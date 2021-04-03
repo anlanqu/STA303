@@ -1,0 +1,147 @@
+---
+title: "Professional development"
+author: "Anlan_Qu  1004155184"
+date: "01/04/2021"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## \textcolor{blue}{Description of Design}
+Coffee is an indispensable part in my daily life and sometimes the coffee splsh on my clothes while walking. Hence, I want to find out the critical factors which cause coffee splash out and prevent it from happening again. In particular, I am interested in the affects of varying the level of coffee in cup, varying the device, varying the speed of walking, and how these three factors affect the amount of splash.
+In deciding on this experiment, a $2^3$ (all three factors are in two levels) factorial design immediately came to mind with the following specific information :
+
+$\begin{tabular}{|c|c|c|}
+    \hline
+    Factors & Level 1 & Level 2 \\
+    \hline
+    level of coffee in cup & full cup (-1) & 3/4 cup (+1) \\
+    \hline
+    device & nothing (-1) & spoon placed across top of cup facing up (+1) \\
+    \hline
+    speed of walking & 6km/h (-1) & 4km/h (+1) \\
+    \hline
+    \end{tabular}$ 
+
+
+\textcolor{blue}{produres:}
+
+Since it is a $2^3$ factorial design, there are totally 8 experimental designs. The amount of splash was measured in 4 levels: 4 represents no splash, 3 represents a little splash, 2 represents medium splash, and 1 means lots of splash. The experimental units are the coffee and the variables are level of coffee in cup, walking speed, and device.
+I plan to ran one of the 8 combinations of experimental conditions per day by myself from March 1 to March 8 in the corridor of my condo (30 meters) and recorded the result.
+
+The differnet from proposal is I found one group of data is not representitive enough, so I decided to replicate the 8 conditions in order to obtain a large amount of variability, thus there should be 16 sets of data. Then sfter one week of my first experiment (March 15 to March 22), I did the same productures as last week. Therefore, we got 16 observations.
+
+\newpage
+## \textcolor{blue}{Data from the experiment:}
+
+$\begin{tabular}{|c|c|c|c|c|}
+\hline
+run & amount(y) & level of coffee & device & speed \\
+\hline
+1 & 4 & 1 & 1 & 1 \\
+\hline
+2 & 3 & 1 & 1 & -1 \\
+\hline
+3 & 2 & 1 & -1 & 1 \\
+\hline
+4 & 2 & 1 & -1 & -1 \\
+\hline
+5 & 3 & -1 & 1 & 1 \\
+\hline
+6 & 3 & -1 & 1 & -1 \\
+\hline
+7 & 2 & -1 & -1 & 1 \\
+\hline
+8 & 1 & -1 & -1 & -1 \\
+\hline
+9 & 4 & 1 & 1 & 1 \\
+\hline
+10 & 4 & 1 & 1 & -1 \\
+\hline
+11 & 3 & 1 & -1 & 1 \\
+\hline
+12 & 2 & 1 & -1 & -1 \\
+\hline
+13 & 3 & -1 & 1 & 1 \\
+\hline
+14 & 2 & -1 & 1 & -1 \\
+\hline
+15 & 1 & -1 & -1 & 1 \\
+\hline
+16 & 1 & -1 & -1 & -1 \\
+\hline
+\end{tabular}$
+
+\newpage
+## \textcolor{blue}{Statistical Analysis}
+
+```{r, echo=TRUE}
+coffee = read.csv('/Users/Racheal/Desktop/Data.csv',header=TRUE)
+fit <- lm (amount ~ level_of_coffee * device * speed, data = coffee)
+summary(fit)
+```  
+
+we can visualize the data in the cube and can caculate the main effect and variance
+
+```{r include=FALSE}
+library("FrF2")
+```
+
+
+```{r, echo=TRUE}
+cubePlot(fit,"level_of_coffee", "device", "speed", main="cube plot")
+```  
+
+**Interpretations**:  
+There should be 7 possible null hypotheses in this design, which are: (1) level of coffee in cup does not influence the amount of splash (Beta1 = 0); (2) device does not influence the amount of splash (Beta2 = 0); (3) speed of walking does not influence the amount of splash (Beta3 = 0) and so on. 
+We can get the eight Beta values and their corresponding p-values. The p-value for level_of_coffee and devicve are less than 0.05, therefore, we have strong evidence to reject null hypothesis 1 & 2 that these two factors are significant.
+
+## \textcolor{blue}{lessons}
+I conducted an experiment to look for factors that influence the amount of splash by using a $2^3$ factorial design with a replication. 
+From the data analysis, we know that level of coffee in cup and the device have positive estimated coefficients and small p-values. So there is enough evidence to say that lower level of coffee in cup and spoon placed across top of cup facing up can decline the amount of splash. However, the effects of level of coffee in cup, the device, and the walking speed  are independent of each other. 
+
+In addition, I have made my own Github page and upload this experiment that everyone can see my data and results.
+
+\newpage
+## \textcolor{blue}{Timesheet}
+
+$\begin{tabular}{|c|c|c|}
+\hline
+Date & Time spent & Activity \\
+\hline
+Mar1 & 27 & 1 1 1 \\
+\hline
+Mar2 & 18 & 1 1 -1 \\
+\hline
+Mar3 & 27 & 1 -1 1 \\
+\hline
+Mar4 & 18 & 1 -1 -1 \\
+\hline
+Mar5 & 27 & -1 1 1 \\
+\hline
+Mar6 & 18 & -1 1 -1 \\
+\hline
+Mar7 & 27 & -1 -1 1 \\
+\hline
+Mar8 & 18 & -1 -1 -1 \\
+\hline
+Mar15 & 27 & 1 1 1 \\
+\hline
+Mar16 & 18 & 1 1 -1 \\
+\hline
+Mar17 & 27 & 1 -1 1 \\
+\hline
+Mar18 & 18 & 1 -1 -1 \\
+\hline
+Mar19 & 27 & -1 1 1 \\
+\hline
+Mar20 & 18 & -1 1 -1 \\
+\hline
+Mar21 & 27 & -1 -1 1 \\
+\hline
+Mar22 & 18 & -1 -1 -1 \\
+\hline
+\end{tabular}$
+
+\newpage
+## \textcolor{blue}{Evidence}
